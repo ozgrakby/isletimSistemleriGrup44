@@ -84,6 +84,39 @@ int komut_yurutucu(char **komut){
             //CIKIS YONLENDIRME
             return 1;
         }
+        else if(strcmp(komut[j], "|" == 0)){
+            char* komut1[j + 1];
+            for(int x = 0 ; x < j ; x ++)
+                komut1[x] = komut[x];
+            
+            komut1[j] = NULL;
+
+            int k = 0;
+            int komut2_size = 0;
+            while(komut[j + 1 + komut2_size] != NULL)
+                komut2_size++;
+            
+            char* komut2[komut2_size + 1];
+            for(int x = j + 1; komut[x] != NULL ; x ++){
+                komut2[k] = komut[x];
+                k++
+            }
+            komut2[k] = NULL;
+
+            pid_t child_fork = fork();
+            if(child_pid == 0){
+                komut_yurutucu(komut1);
+            }
+            else if(child_pid < 0){
+                perror("Fork islemi basarisiz!");
+                return 0;
+            }
+            else{
+                waitpid(child_pid, NULL, 0);
+                komut_yurutucu(komut2);
+                return 1;
+            }
+        }
         j++;
     }
     if(komut[j] == NULL){
