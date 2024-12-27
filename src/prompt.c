@@ -67,7 +67,7 @@ int komut_yurutucu(char **komut){
     }
     while(komut[j] != NULL){
         if(strcmp(komut[j],"&") == 0){
-            //ARKAPLANDA CALISMA
+            arkaplan_calisma(komut);
             return 1;
         }
         else if(strcmp(komut[j],"<") == 0){

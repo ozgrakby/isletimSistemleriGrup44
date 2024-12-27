@@ -6,7 +6,10 @@
 int main(){
     char line[MAX_KOMUT_UZUNLUK];
     char *komut[MAX_ARG];
-
+    struct sigaction sa;
+    sa.sa_handler = handle_signal;
+    sa.sa_flags = SA_RESTART | SA_NOCLDSTOP;
+    sigaction(SIGCHLD, &sa, NULL);
     while(1){
         //Kabuktaki her döngüde ekrana ">" karakterini basar. 
         prompt_yazdir();
