@@ -1,5 +1,7 @@
 #include "prompt.h"
 #include "girisyonlendirme.h"
+#include "arkaplancalisma.h"
+#include "cikisyonlendirme.h"
 
 //Kabuktaki her döngüde ekrana ">" karakterini basar. 
 //Aynı zamanda buffer boşaltırlarak ">" karakterinin hemen yazılması sağlanır.
@@ -81,7 +83,7 @@ int komut_yurutucu(char **komut){
             if(komut[j+1] == NULL){
                 printf("Yeteri kadar arguman yok!\n");
             }
-            //CIKIS YONLENDIRME
+            cikis_yonlendirme(komut);
             return 1;
         }
         else if(strcmp(komut[j], "|" == 0)){
